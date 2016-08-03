@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ListView;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -21,16 +22,22 @@ public class MainActivity extends AppCompatActivity {
 
     public static final String NUMBER_KEY = "NUMBER_KEY";
 
+    public static String STUDENT_KEY_PARCEL = "STUDENT_KEY_PARCEL";
+
     private String dataJSON = "[{\"name\":\"Juan\",\"age\":20,\"grade\":8.1},{\"name\":\"Miguel\",\"age\":23,\"grade\":8.3},{\"name\":\"Roberto\",\"age\":39,\"grade\":9.3},{\"name\":\"Luis\",\"age\":19,\"grade\":6.9},{\"name\":\"Gaudencio\",\"age\":25,\"grade\":4.3}]";
 
     private ArrayList<Student> students;
 
     private EditText mEditText;
+    private ListView mListView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
+        mListView = (ListView) findViewById(R.id.list_view);
 
         mEditText = (EditText) findViewById(R.id.a_main_et);
 
@@ -48,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
 
         Intent intent = new Intent(this, DetailsActivity.class);
         intent.putExtra(NUMBER_KEY, number);
+        intent.putExtra(STUDENT_KEY_PARCEL, students.get(number));
         startActivity(intent);
     }
 
